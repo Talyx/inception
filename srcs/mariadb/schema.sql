@@ -1,0 +1,7 @@
+CREATE DATABASE inception;
+CREATE USER 'talyx'@'%' IDENTIFIED BY '1337';
+GRANT ALL PRIVILEGES ON inception.* TO 'talyx'@'%';
+
+FLUSH PRIVILEGES;
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY '7331';
