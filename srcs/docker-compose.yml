@@ -7,7 +7,7 @@ networks:
 volumes:
   wordpress:
     name: wordpress
-    driver: local 
+    driver: local
     driver_opts: 
       device: /home/talyx/data/wordpress
       o: bind
@@ -22,6 +22,7 @@ volumes:
 
 services:
   nginx:
+    env_file: .env
     depends_on:
       - wordpress
     container_name: nginx_container
@@ -32,22 +33,25 @@ services:
       - wordpress:/var/www/wordpress
     networks:
       - localhost
+    image: my_nginx
     restart: always
   mariadb:
+    env_file: .env
     container_name: mariadb_container
     build: ./mariadb
     volumes:
       - mariadb:/var/lib/mysql
     networks:
       - localhost
-    image: mariadb
+    image: my_mariadb
     restart: always
   wordpress:
+    env_file: .env
     depends_on:
       - mariadb
     container_name: wordpress_container
     build: ./wordpress
-    image: wordpress
+    image: my_wordpress
     volumes:
       - wordpress:/var/www/wordpress
     networks:
