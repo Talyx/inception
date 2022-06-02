@@ -18,6 +18,5 @@ fclean: clean
 	@sudo docker system prune -a --force;
 	@sudo rm -rf $(HOME)/data/*
 
-re:
-	@docker-compose -f ./srcs/docker-compose.yml up --build
+re: fclean all
 .PHONY: all create clean stop fclean re
